@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>OpenCloud</title>
+    <link rel="stylesheet" th:href="@{/styles/main.css}">
+</head>
+<body>
+    <div class="header">
+        <h1 class="label-text">OpenCloud</h1>
+        <div class="about-us-button"></div>
+    </div>
+
+    <div class="main-display">
+        <h1 class="label-text"><span th:text="${locationName}">Waterloo, Ontario</span></h1>
+        <div class="global-info-holder">
+            <div class="info-holder">
+                <div class="info-display" style="height: 72px;"></div>
+                <div class="info-display" style="height: 72px;"></div>
+                <div class="info-display" style="height: 72px;"></div>
+            </div>
+            <div class="info-holder">
+                <div class="info-display" style="height: 144px;"></div>
+                <div class="info-display" style="height: 72px;"></div>
+            </div>
+        </div>
+
+        <div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.label-text {
+    color: #5cace0;
+}
+
+.about-us-button {
+    width: 64px;
+    height: 64px;
+    border-radius: 32px;
+    background-color: #aed6f1;
+}
+
+.main-display {
+    width: 640px;
+    height: 480px;
+    border-radius: 32px;
+    background-color: #eaeeef;
+    justify-self: center;
+    padding: 2px 16px;
+}
+
+.global-info-holder {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 50%;
+}
+
+.info-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.info-display {
+    background-color: #5cace0;
+    border-radius: 32px;
+    width: 280px;
+}
+
+.days-holder {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.day-option {
+    background-color: #5cace0;
+    border-radius: 32px;
+    display: flex;
+    flex-grow: 1;
+    height: 144px;
+}

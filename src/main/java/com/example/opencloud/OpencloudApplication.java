@@ -7,6 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class OpencloudApplication {
 
 	public static void main(String[] args) {
+		WeatherController weatherController = new WeatherController();
+		WeatherCore weatherCore = new WeatherCore();
+		weatherCore.register(weatherController);
+
 		SpringApplication.run(OpencloudApplication.class, args);
 	}
 
