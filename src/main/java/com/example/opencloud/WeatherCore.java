@@ -1,12 +1,21 @@
 package com.example.opencloud;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class WeatherCore implements WeatherSubject {
     List<WeatherObserver> observers;
 
+    private static WeatherCore instance;
+
     public WeatherCore() {
+        if (instance == null) {
+            instance = this;
+        } else {
+            System.out.println("Singleton of this class already exists.");
+            return;
+        }
+
         observers = new ArrayList<WeatherObserver>();
     }
 
@@ -21,9 +30,13 @@ public class WeatherCore implements WeatherSubject {
     }
 
     @Override
-    public void invoke() {
+    public void invoke(Weather info) {
         for (WeatherObserver observer : observers) {
-            observer.update(null);
+            observer.update(info);
         }
+    }
+
+    public static WeatherCore getInstance() {
+        return instance;
     }
 }

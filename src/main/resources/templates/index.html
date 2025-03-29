@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <title>OpenCloud</title>
     <link rel="stylesheet" th:href="@{/styles/main.css}">
@@ -9,23 +9,53 @@
         <h1 class="label-text">OpenCloud</h1>
         <div class="about-us-button"></div>
     </div>
-
     <div class="main-display">
-        <h1 class="label-text"><span th:text="${locationName}">Waterloo, Ontario</span></h1>
+        <h1 class="label-text">Waterloo, Ontario</h1>
         <div class="global-info-holder">
             <div class="info-holder">
-                <div class="info-display" style="height: 72px;"></div>
-                <div class="info-display" style="height: 72px;"></div>
-                <div class="info-display" style="height: 72px;"></div>
+                <div class="info-display" style="height: 72px;">
+                    <span th:text="${tempActual}">Temperature Actual</span>
+                    <span th:text="${tempFeelsLike}">Temperature Feels Like</span>
+                </div>
+                <div class="info-display" style="height: 72px;"><span th:text="${wind}">Wind</span></div>
+                <div class="info-display" style="height: 72px;"><span th:text="${humidity}">Humidity</span></div>
             </div>
             <div class="info-holder">
                 <div class="info-display" style="height: 144px;"></div>
-                <div class="info-display" style="height: 72px;"></div>
+                <div class="info-display" style="height: 72px;"><span th:text="${uv}">UV</span></div>
             </div>
         </div>
 
-        <div>
-
+        <div class="days-holder">
+            <form id="monday">
+                <button type="submit" value="Submit" class="day-option" form="monday" onclick="WeatherClick('monday')">M</button>
+            </form>
+            <form id="tuesday">
+                <button type="submit" value="Submit" class="day-option" form="tuesday" onclick="WeatherClick('tuesday')">T</button>
+            </form>
+            <form id="wednesday">
+                <button type="submit" value="Submit" class="day-option" form="wednesday" onclick="WeatherClick('wednesday')">W</button>
+            </form>
+            <form id="thursday">
+                <button type="submit" value="Submit" class="day-option" form="thursday" onclick="WeatherClick('thursday')">T</button>
+            </form>
+            <form id="friday">
+                <button type="submit" value="Submit" class="day-option" form="friday" onclick="WeatherClick('friday')">F</button>
+            </form>
+            <form id="saturday">
+                <button type="submit" value="Submit" class="day-option" form="saturday" onclick="WeatherClick('saturday')">S</button>
+            </form>
+            <form id="sunday">
+                <button type="submit" value="Submit" class="day-option" form="sunday" onclick="WeatherClick('sunday')">S</button>
+            </form>
+            <script>
+                function WeatherClick(day) {
+                    let action = "/get_weather/" + encodeURIComponent(day);
+                    fetch(action, {
+                        method: "GET"
+                    }).then(r => r.text());
+                }
+            </script>
         </div>
     </div>
 </body>
