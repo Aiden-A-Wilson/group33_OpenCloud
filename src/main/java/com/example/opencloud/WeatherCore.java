@@ -8,14 +8,7 @@ public class WeatherCore implements WeatherSubject {
 
     private static WeatherCore instance;
 
-    public WeatherCore() {
-        if (instance == null) {
-            instance = this;
-        } else {
-            System.out.println("Singleton of this class already exists.");
-            return;
-        }
-
+    private WeatherCore() {
         observers = new ArrayList<WeatherObserver>();
     }
 
@@ -37,6 +30,10 @@ public class WeatherCore implements WeatherSubject {
     }
 
     public static WeatherCore getInstance() {
+        if (instance == null) {
+            instance = new WeatherCore();
+        }
+
         return instance;
     }
 }

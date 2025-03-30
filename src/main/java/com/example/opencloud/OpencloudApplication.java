@@ -8,9 +8,8 @@ import java.util.Random;
 @SpringBootApplication
 public class OpencloudApplication {
 	public static void main(String[] args) {
-		WeatherCore weatherCore = new WeatherCore();
 		WeatherController weatherController = new WeatherController();
-		weatherCore.register(weatherController);
+		WeatherCore.getInstance().register(weatherController);
 
 		SpringApplication.run(OpencloudApplication.class, args);
 	}
