@@ -10,11 +10,11 @@ public class OpenCloudController {
 
     @GetMapping("/")
     public String getHomePage(Model model) {
-        model.addAttribute("tempActual", currentWeather.getTempActual());
-        model.addAttribute("tempFeelsLike", currentWeather.getTempFeelsLike());
-        model.addAttribute("wind", currentWeather.getWind());
-        model.addAttribute("humidity", currentWeather.getHumidity());
-        model.addAttribute("uv", currentWeather.getUv());
+        model.addAttribute("tempActual", "Temperature: " + currentWeather.getTempActual() + "°C");
+        model.addAttribute("tempFeelsLike", "Feels Like: " + currentWeather.getTempFeelsLike() + "°C");
+        model.addAttribute("wind", "Wind: " + currentWeather.getWind() + " kph");
+        model.addAttribute("humidity", "Humidity: " + currentWeather.getHumidity() + "%");
+        model.addAttribute("uv", "UV Index: " + currentWeather.getUv());
         return "index";
     }
 }
