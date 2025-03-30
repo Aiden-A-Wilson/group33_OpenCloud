@@ -14,8 +14,8 @@
         <div class="global-info-holder">
             <div class="info-holder">
                 <div class="info-display" style="height: 72px;">
-                    <span th:text="${tempActual}">Temperature Actual</span>
-                    <span th:text="${tempFeelsLike}">Temperature Feels Like</span>
+                    <span th:text="${tempActual}" style="margin-right: 10px;">Temp</span>
+                    <span th:text="${tempFeelsLike}">Feels</span>
                 </div>
                 <div class="info-display" style="height: 72px;"><span th:text="${wind}">Wind</span></div>
                 <div class="info-display" style="height: 72px;"><span th:text="${humidity}">Humidity</span></div>
@@ -49,12 +49,11 @@
                 <button type="submit" value="Submit" class="day-option" form="sunday" onclick="WeatherClick('sunday')">S</button>
             </form>
             <script>
-                function WeatherClick(day) {
-                    let action = "/get_weather/" + encodeURIComponent(day);
-                    fetch(action, {
-                        method: "GET"
-                    }).then(r => r.text());
-                }
+            function WeatherClick(day) {
+            let action = "/get_weather/" + encodeURIComponent(day);
+            fetch(action, { method: "GET" })
+            .then(() => location.reload());  // Refresh page to update Thymeleaf model
+            }
             </script>
         </div>
     </div>
