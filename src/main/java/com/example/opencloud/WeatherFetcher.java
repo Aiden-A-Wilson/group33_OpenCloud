@@ -10,10 +10,20 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+/**
+ * Object that directly accesses the weatherapi.com API to obtain weather information.
+ * @author Group 33
+ */
 @Service
 public class WeatherFetcher {
     private static final String API_KEY = "b6d63b33fddc4c53b5f170940252903";
 
+    /**
+     * Fetches weather information from the specified city for the specified day.
+     * The weather subject is invoked when information is received from the API.
+     * @param city The city to get the weather from.
+     * @param targetDay The day to get the weather from.
+     */
     public void fetchAndUpdateForecastForDay(String city, String targetDay) {
         String endpoint = String.format(
                 "http://api.weatherapi.com/v1/forecast.json?key=%s&q=%s&days=7", API_KEY, city);

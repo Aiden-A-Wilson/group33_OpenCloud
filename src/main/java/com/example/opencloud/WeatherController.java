@@ -1,6 +1,10 @@
 package com.example.opencloud;
 
-
+/**
+ * Represents an observer of weather updates.
+ * Sends the latest weather update to the web route.
+ * @author Group 33
+ */
 public class WeatherController implements WeatherObserver {
     private String currentDay = "today";
 
@@ -8,6 +12,10 @@ public class WeatherController implements WeatherObserver {
         this.currentDay = day.toLowerCase();
     }
 
+    /**
+     * Sends the latest weather info to the web route so that the UI can be updated.
+     * @param info The latest weather info.
+     */
     @Override
     public void update(Weather info) {
         OpenCloudController.currentWeather = info;
