@@ -1,5 +1,8 @@
 package com.example.opencloud;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class WeatherCommandController {
     private WeatherCommand command;
 

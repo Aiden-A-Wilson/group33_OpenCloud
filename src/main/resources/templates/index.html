@@ -3,59 +3,93 @@
 <head>
     <title>OpenCloud</title>
     <link rel="stylesheet" th:href="@{/styles/main.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="header">
-        <h1 class="label-text">OpenCloud</h1>
-        <div class="about-us-button"></div>
-    </div>
-    <div class="main-display">
-        <h1 class="label-text">Waterloo, Ontario</h1>
-        <div class="global-info-holder">
-            <div class="info-holder">
-                <div class="info-display" style="height: 72px;">
-                    <span th:text="${tempActual}" style="margin-right: 10px;">Temp</span>
-                    <span th:text="${tempFeelsLike}">Feels</span>
-                </div>
-                <div class="info-display" style="height: 72px;"><span th:text="${wind}">Wind</span></div>
-                <div class="info-display" style="height: 72px;"><span th:text="${humidity}">Humidity</span></div>
-            </div>
-            <div class="info-holder">
-                <div class="info-display" style="height: 144px;"></div>
-                <div class="info-display" style="height: 72px;"><span th:text="${uv}">UV</span></div>
-            </div>
-        </div>
+<div class="background-gradient"></div>
 
-        <div class="days-holder">
-            <form id="monday">
-                <button type="submit" value="Submit" class="day-option" form="monday" onclick="WeatherClick('monday')">M</button>
-            </form>
-            <form id="tuesday">
-                <button type="submit" value="Submit" class="day-option" form="tuesday" onclick="WeatherClick('tuesday')">T</button>
-            </form>
-            <form id="wednesday">
-                <button type="submit" value="Submit" class="day-option" form="wednesday" onclick="WeatherClick('wednesday')">W</button>
-            </form>
-            <form id="thursday">
-                <button type="submit" value="Submit" class="day-option" form="thursday" onclick="WeatherClick('thursday')">T</button>
-            </form>
-            <form id="friday">
-                <button type="submit" value="Submit" class="day-option" form="friday" onclick="WeatherClick('friday')">F</button>
-            </form>
-            <form id="saturday">
-                <button type="submit" value="Submit" class="day-option" form="saturday" onclick="WeatherClick('saturday')">S</button>
-            </form>
-            <form id="sunday">
-                <button type="submit" value="Submit" class="day-option" form="sunday" onclick="WeatherClick('sunday')">S</button>
-            </form>
-            <script>
-            function WeatherClick(day) {
-            let action = "/get_weather/" + encodeURIComponent(day);
-            fetch(action, { method: "GET" })
-            .then(() => location.reload());  // Refresh page to update Thymeleaf model
-            }
-            </script>
-        </div>
+<header class="header">
+    <div class="header-content">
+        <h1 class="app-name">OpenCloud</h1>
     </div>
+</header>
+
+<main class="main-container">
+    <section class="current-weather">
+        <h2 class="location-name">Waterloo, Ontario</h2>
+        <div class="temperature">
+            <span class="temperature-value" th:text="${tempActual}">--°C</span>
+        </div>
+        <div class="feels-like">
+            <span th:text="${tempFeelsLike}">--°C</span>
+        </div>
+        <div class="additional-info">
+                <span>
+                    <span th:text="${wind}">-- kph</span>
+                </span>
+            <span>
+                    <span th:text="${humidity}">--%</span>
+                </span>
+            <span>
+                    <span th:text="${uv}">--</span>
+                </span>
+        </div>
+    </section>
+
+    <section class="forecast">
+        <div class="forecast-heading">7-Day Forecast</div>
+        <div class="forecast-grid">
+
+            <div class="day-card" onclick="fetchWeather('monday')">
+                <div class="day-name">Mon</div>
+                <div class="day-emoji">☕</div>
+            </div>
+
+            <div class="day-card" onclick="fetchWeather('tuesday')">
+                <div class="day-name">Tue</div>
+                <div class="day-emoji">🍩</div>
+            </div>
+
+            <div class="day-card" onclick="fetchWeather('wednesday')">
+                <div class="day-name">Wed</div>
+                <div class="day-emoji">🍔</div>
+            </div>
+
+            <div class="day-card" onclick="fetchWeather('thursday')">
+                <div class="day-name">Thu</div>
+                <div class="day-emoji">🍀</div>
+            </div>
+
+            <div class="day-card" onclick="fetchWeather('friday')">
+                <div class="day-name">Fri</div>
+                <div class="day-emoji">🌻</div>
+            </div>
+
+            <div class="day-card" onclick="fetchWeather('saturday')">
+                <div class="day-name">Sat</div>
+                <div class="day-emoji">🏝️</div>
+            </div>
+
+            <div class="day-card" onclick="fetchWeather('sunday')">
+                <div class="day-name">Sun</div>
+                <div class="day-emoji">🍰</div>
+            </div>
+
+        </div>
+        <p class="forecast-note">Click a day card to load that forecast!</p>
+    </section>
+</main>
+
+<footer class="footer">
+    <span>2025 OpenCloud - Harris; Ayden; Henil; Nathan;</span>
+</footer>
+
+<script>
+    function fetchWeather(day) {
+        fetch('/get_weather/' + encodeURIComponent(day))
+            .then(() => location.reload())
+            .catch(error => console.error('Error fetching weather:', error));
+    }
+</script>
 </body>
 </html>

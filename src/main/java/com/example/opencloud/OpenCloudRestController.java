@@ -1,5 +1,6 @@
 package com.example.opencloud;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,16 +10,19 @@ import java.util.HashMap;
 public class OpenCloudRestController {
 
     private WeatherCommandController weatherCommandController;
-
-    @Autowired
     private WeatherFetcher weatherFetcher;
-    private HashMap<String, WeatherCommand> weatherCommands;
-    
-    public OpenCloudRestController() {
-        weatherFetcher = new WeatherFetcher();
-        weatherCommandController = new WeatherCommandController();
 
-        weatherCommands = new HashMap<String, WeatherCommand>();
+    public OpenCloudRestController(
+            WeatherFetcher weatherFetcher,
+            WeatherCommandController weatherCommandController
+    ) {
+        this.weatherFetcher = weatherFetcher;
+        this.weatherCommandController = weatherCommandController;
+    }
+    private HashMap<String, WeatherCommand> weatherCommands = new HashMap<>();
+
+    @PostConstruct
+    private void initCommands() {
         weatherCommands.put("monday", new MondayWeatherCommand(weatherFetcher));
         weatherCommands.put("tuesday", new TuesdayWeatherCommand(weatherFetcher));
         weatherCommands.put("wednesday", new WednesdayWeatherCommand(weatherFetcher));
